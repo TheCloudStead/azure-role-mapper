@@ -11,10 +11,9 @@ async def get_users():
         user_ids = {user.id: user.user_principal_name for user in users.value}
         return user_ids
 
-scopes = ["https://graph.microsoft.com/.default"]
 credentials = DefaultAzureCredential()
 subscription_client = SubscriptionClient(credentials)
-graph_client = GraphServiceClient(credentials=credentials, scopes=scopes)
+graph_client = GraphServiceClient(credentials=credentials)
 subscriptions = subscription_client.subscriptions.list()
 subscription_map = {subscription.id.split('/')[2]: subscription.display_name for subscription in subscriptions}
 
