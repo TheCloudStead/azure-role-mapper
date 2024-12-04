@@ -1,5 +1,4 @@
 import asyncio
-import nest_asyncio
 
 from azure.identity import DefaultAzureCredential
 from azure.mgmt.authorization import AuthorizationManagementClient
@@ -19,7 +18,6 @@ graph_client = GraphServiceClient(credentials=credentials, scopes=scopes)
 subscriptions = subscription_client.subscriptions.list()
 subscription_map = {subscription.id.split('/')[2]: subscription.display_name for subscription in subscriptions}
 
-nest_asyncio.apply()
 azure_user_ids = asyncio.run(get_users())
 
 subscription_access = {}
